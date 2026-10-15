@@ -50,6 +50,8 @@ cargo build --release
 cargo run --release -- demo
 ```
 
+No computador Windows usado nesta entrega, o toolchain MSVC padrão não encontra `link.exe`. O toolchain `stable-x86_64-pc-windows-gnullvm` já está instalado e foi validado. Para executar os comandos neste computador, acrescente `+stable-x86_64-pc-windows-gnullvm` logo após `cargo`, por exemplo: `cargo +stable-x86_64-pc-windows-gnullvm run --release -- demo`. O mesmo vale para `cargo test` e para o benchmark.
+
 Ajuda dos comandos:
 
 ```bash

@@ -2,6 +2,8 @@
 
 Duracao maxima: 4 minutos. Meta sugerida: 3 minutos e 40 segundos.
 
+Neste computador Windows, use os comandos abaixo com o toolchain `stable-x86_64-pc-windows-gnullvm`, que ja esta instalado. O comando `cargo` sem essa indicacao pode falhar por falta do vinculador `link.exe` do toolchain MSVC padrao.
+
 ## 0:00 a 0:25 Problema
 
 Fala: "A MegaStore possui um catalogo amplo, mas recomendacoes genericas dificultam a descoberta e reduzem oportunidades de venda cruzada. O ConectaStore usa as relacoes entre clientes, produtos e categorias para encontrar itens relevantes."
@@ -21,7 +23,7 @@ Na tela: terminal dentro da pasta do projeto.
 Execute:
 
 ```bash
-cargo run --release -- demo
+cargo +stable-x86_64-pc-windows-gnullvm run --release -- demo
 ```
 
 Fala: "A demonstracao cadastra um cliente e cinco produtos, consulta um item e cria conexoes. A BFS recomenda a partir do cliente e de um produto. O item ja comprado nao aparece e cada produto aparece uma unica vez."
@@ -39,7 +41,7 @@ Na tela: mostre `bfs_recommend` em `src/store.rs`.
 Execute:
 
 ```bash
-cargo test
+cargo +stable-x86_64-pc-windows-gnullvm test
 ```
 
 Fala: "Os testes unitarios e de integracao cobrem cadastro, consulta, validacoes, profundidade, ranking, exclusao de compras e duplicidades. Nesta gravacao, todos os testes passam."
@@ -51,9 +53,9 @@ Nao diga que passaram se a sua execucao no momento da gravacao mostrar falha.
 Execute:
 
 ```bash
-cargo run --release -- benchmark
+cargo +stable-x86_64-pc-windows-gnullvm run --release -- benchmark
 ```
 
 Fala: "O benchmark mede construcao e consulta com 1 mil, 10 mil e 50 mil produtos. A lista de adjacencia ocupa O de V mais E, e a BFS tambem custa O de V mais E no subgrafo visitado. Os tempos mostrados sao desta maquina e podem variar. O repositorio e o relatorio documentam como reproduzir tudo."
 
-Na tela: mostre os tres resultados e finalize com os links publicados.
+Na tela: mostre os tres resultados e finalize exibindo a URL do repositorio. O link do proprio video so existira depois da publicacao.
