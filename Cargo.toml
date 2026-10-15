@@ -1,0 +1,19 @@
+[package]
+name = "conectastore"
+version = "1.0.0"
+edition = "2021"
+authors = ["Nicolas Machado Castilhano"]
+description = "Sistema didatico de recomendacao baseado em grafos para a MegaStore"
+license = "MIT"
+
+[lib]
+name = "conectastore"
+path = "src/lib.rs"
+
+[[bin]]
+name = "conectastore"
+path = "src/main.rs"
+
+[profile.release]
+codegen-units = 1
+lto = "thin"

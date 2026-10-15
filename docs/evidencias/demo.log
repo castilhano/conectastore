@@ -1,0 +1,19 @@
+   Compiling conectastore v1.0.0 (C:\Users\papor\Documents\Codex\2026-10-14\referenced-chatgpt-conversation-this-is-an\megastore)
+    Finished `release` profile [optimized] target(s) in 5.09s
+     Running `target\release\conectastore.exe demo`
+ConectaStore - demonstracao real
+Produtos cadastrados: 5
+Clientes cadastrados: 1
+Consulta do produto 102: Product { id: 102, name: "Mouse Ergonomico", category: "Eletronicos", price: 149.9 }
+
+Recomendacoes para o cliente 1:
+- Livro Rust (id 104, score 1.017, distancia 1)
+- Teclado Mecanico (id 103, score 0.717, distancia 2)
+- Mouse Ergonomico (id 102, score 0.592, distancia 2)
+- Suporte para Notebook (id 105, score 0.425, distancia 2)
+
+Recomendacoes a partir do produto 101:
+- Mouse Ergonomico (id 102, score 1.125, distancia 1)
+- Teclado Mecanico (id 103, score 1.075, distancia 1)
+- Suporte para Notebook (id 105, score 0.850, distancia 1)
+- Livro Rust (id 104, score 0.550, distancia 2)

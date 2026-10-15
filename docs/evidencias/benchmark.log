@@ -1,0 +1,7 @@
+    Finished `release` profile [optimized] target(s) in 0.03s
+     Running `target\release\conectastore.exe benchmark`
+ConectaStore - benchmark basico (modo release recomendado)
+volume_produtos,arestas_direcionadas,construcao_ms,consulta_us,recomendacoes
+1000,5986,1.428,55.100,10
+10000,59986,14.979,651.400,10
+50000,299986,92.243,3320.800,10

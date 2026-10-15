@@ -1,0 +1,125 @@
+# ConectaStore
+
+Sistema de recomendação de produtos da MegaStore desenvolvido em Rust para a disciplina Data Structure Strategy and Implementation do curso de ADS da UniFECAF.
+
+Autor: Nicolas Machado Castilhano
+
+## Objetivo e funcionamento
+
+O projeto representa clientes, produtos e categorias como vértices de um grafo. Compras, interesses, similaridades e pertencimento à categoria são arestas ponderadas. A partir de um cliente ou produto, uma busca em largura (BFS) encontra produtos próximos, acumula relevância pelo peso e pela distância e devolve uma lista ordenada sem repetições.
+
+## Tecnologias e estruturas utilizadas
+
+- Rust 2021, sem dependencias externas;
+- `HashMap` para catálogo, clientes, lista de adjacência, compras e pontuações;
+- `HashSet` para visitados, compras e eliminação de duplicidades;
+- `VecDeque` como fila da BFS;
+- `Vec` para listas compactas de arestas e resultado ordenado;
+- lista de adjacência para um grafo heterogêneo, ponderado, esparso e com relações dirigidas armazenadas nos dois sentidos quando a navegação é bidirecional.
+
+## Arquitetura
+
+```text
+src/
+|- model.rs      entidades Product, Customer, Node e Recommendation
+|- graph.rs      lista de adjacência, arestas, pesos e relações
+|- store.rs      casos de uso, validações e algoritmo BFS
+|- benchmark.rs  geração determinística e medição por volume
+|- lib.rs        API pública da biblioteca
+`- main.rs       demonstração e benchmark por linha de comando
+tests/
+`- integration.rs fluxos completos de integracao
+```
+
+Fluxo da recomendação:
+
+```text
+Cliente ou produto -> fila BFS -> vizinhos por nivel
+                  -> HashSet de visitados
+                  -> candidatos nao comprados
+                  -> score = soma(peso / distância)
+                  -> ordenação -> limite solicitado
+```
+
+## Compilação e execução
+
+Requisito: toolchain Rust estável com Cargo.
+
+```bash
+cargo build --release
+cargo run --release -- demo
+```
+
+Ajuda dos comandos:
+
+```bash
+cargo run --release -- help
+```
+
+## Testes
+
+```bash
+cargo test
+```
+
+Os testes unitários ficam junto aos módulos e verificam grafo, validações, cadastro, consulta, exclusão de itens comprados e ausência de duplicidades. Os testes de integração validam fluxos completos, profundidade da BFS, erros e conexões por categoria.
+
+## Benchmark
+
+```bash
+cargo run --release -- benchmark
+```
+
+O programa mede separadamente a construção do conjunto e uma consulta BFS, nos volumes de 1.000, 10.000 e 50.000 produtos. Os dados são determinísticos, com 50 categorias e até duas relações de similaridade por produto. Tempos variam conforme máquina, sistema operacional e carga.
+
+### Resultados medidos neste ambiente
+
+<!-- BENCHMARK_RESULTS_START -->
+Execução real em 14/10/2026, Windows 11, Rust 1.99.0, perfil `release`:
+
+| Produtos | Arestas direcionadas | Construção | Consulta BFS | Recomendações |
+|---:|---:|---:|---:|---:|
+| 1.000 | 5.986 | 1,428 ms | 55,100 us | 10 |
+| 10.000 | 59.986 | 14,979 ms | 651,400 us | 10 |
+| 50.000 | 299.986 | 92,243 ms | 3.320,800 us | 10 |
+
+Os valores representam uma execução pontual neste ambiente e não constituem garantia para outras máquinas. A consulta cresce com a parcela do grafo alcançada pela profundidade configurada; a construção cresce de forma aproximadamente linear no conjunto gerado.
+<!-- BENCHMARK_RESULTS_END -->
+
+## Evidências de execução
+
+A pasta `docs/evidencias/` contém os logs completos e registros visuais gerados diretamente dessas saídas para a demonstração, os testes e o benchmark. As imagens não simulam aprovações: reproduzem os logs preservados ao lado delas.
+
+## Exemplos de uso da API
+
+```rust
+use conectastore::{Customer, Product, Store};
+
+let mut store = Store::new();
+store.add_customer(Customer::new(1, "Ana"))?;
+store.add_product(Product::new(10, "Notebook", "Eletronicos", 3500.0))?;
+store.add_product(Product::new(11, "Mouse", "Eletronicos", 120.0))?;
+store.register_purchase(1, 10, 1.0)?;
+store.connect_products(10, 11, 0.9)?;
+let itens = store.recommend_for_customer(1, 3, 5)?;
+# Ok::<(), conectastore::StoreError>(())
+```
+
+## Complexidade resumida
+
+- consulta por ID no catálogo: tempo médio `O(1)`;
+- inserção em mapa ou conjunto: tempo médio `O(1)`;
+- BFS: `O(V + E)` no subgrafo alcançado;
+- memória do grafo em lista de adjacência: `O(V + E)`;
+- ordenação de `R` candidatos: `O(R log R)`.
+
+## Links de entrega
+
+- Repositório público: https://github.com/castilhano/conectastore
+- Vídeo pitch: a URL será informada separadamente pelo autor após a gravação e publicação.
+
+O relatório técnico em PDF é entregue separadamente. Antes da entrega final, confirme que o repositório e o vídeo estão acessíveis pelos links enviados ao professor.
+
+## Limitações e evolução
+
+Esta versão didática mantém os dados em memória e usa pesos definidos no cadastro. Em produção, o armazenamento poderia ser persistente e particionado; eventos poderiam atualizar pesos; e consultas poderiam ser cacheadas. Para grafos muito densos ou recomendação global, técnicas de amostragem, processamento distribuído e modelos de ranking seriam avaliados.
