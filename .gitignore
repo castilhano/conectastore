@@ -3,3 +3,5 @@
 !docs/evidencias/*.log
 .idea/
 .vscode/
+docs/guia-publicacao.md
+docs/roteiro-video.md
