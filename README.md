@@ -124,7 +124,7 @@ let itens = store.recommend_for_customer(1, 3, 5)?;
 ## Links de entrega
 
 - Repositório público: https://github.com/castilhano/conectastore
-- Vídeo pitch: a URL será informada separadamente pelo autor após a gravação e publicação.
+- Vídeo pitch: https://youtu.be/Rfa0gWaJ-YU
 
 O relatório técnico em PDF é entregue separadamente. Antes da entrega final, confirme que o repositório e o vídeo estão acessíveis pelos links enviados ao professor.
 
