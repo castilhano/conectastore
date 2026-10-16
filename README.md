@@ -90,7 +90,13 @@ Os valores representam uma execução pontual neste ambiente e não constituem g
 
 ## Evidências de execução
 
-A pasta `docs/evidencias/` contém os logs completos e registros visuais gerados diretamente dessas saídas para a demonstração, os testes e o benchmark. As imagens não simulam aprovações: reproduzem os logs preservados ao lado delas.
+A pasta `docs/evidencias/` contém os logs completos da demonstração, dos testes e do benchmark. As imagens são visualizações produzidas a partir dessas saídas reais, não capturas diretas da tela do terminal.
+
+| Execução | Log completo | Visualização do log |
+|---|---|---|
+| Demonstração de cadastro, consulta e recomendações | [demo.log](docs/evidencias/demo.log) | [Ver imagem](docs/evidencias/execucao-demo.png) |
+| Testes unitários e de integração | [cargo-test.log](docs/evidencias/cargo-test.log) | [Ver imagem](docs/evidencias/execucao-testes.png) |
+| Benchmark em três volumes | [benchmark.log](docs/evidencias/benchmark.log) | [Ver imagem](docs/evidencias/execucao-benchmark.png) |
 
 ## Exemplos de uso da API
 
