@@ -1,5 +1,4 @@
-   Compiling conectastore v1.0.0 (C:\Users\papor\Documents\Codex\2026-10-14\referenced-chatgpt-conversation-this-is-an\megastore)
-    Finished `release` profile [optimized] target(s) in 5.09s
+    Finished `release` profile [optimized] target(s) in 0.01s
      Running `target\release\conectastore.exe demo`
 ConectaStore - demonstracao real
 Produtos cadastrados: 5

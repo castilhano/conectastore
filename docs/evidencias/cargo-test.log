@@ -1,16 +1,15 @@
-   Compiling conectastore v1.0.0 (C:\Users\papor\Documents\Codex\2026-10-14\referenced-chatgpt-conversation-this-is-an\megastore)
-    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.00s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.02s
      Running unittests src\lib.rs (target\debug\deps\conectastore-d264b4837fc17d4a.exe)
 
 running 8 tests
 test graph::tests::invalid_weight_is_rejected ... ok
 test graph::tests::duplicate_edge_is_rejected ... ok
-test store::tests::product_can_be_registered_and_queried ... ok
 test store::tests::empty_limit_returns_empty_result ... ok
 test store::tests::duplicate_product_is_rejected ... ok
+test store::tests::product_can_be_registered_and_queried ... ok
 test store::tests::purchased_product_is_not_recommended ... ok
-test store::tests::product_recommendation_excludes_origin ... ok
 test store::tests::recommendations_are_unique ... ok
+test store::tests::product_recommendation_excludes_origin ... ok
 
 test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 
@@ -19,13 +18,14 @@ test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; fini
 running 0 tests
 
 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
      Running tests\integration.rs (target\debug\deps\integration-ba168b917e95f6f8.exe)
 
 running 4 tests
-test missing_entities_return_explicit_errors ... ok
-test full_customer_flow_returns_ranked_unique_products ... ok
-test depth_limit_changes_reachability ... ok
 test category_vertices_connect_products_without_duplicates ... ok
+test full_customer_flow_returns_ranked_unique_products ... ok
+test missing_entities_return_explicit_errors ... ok
+test depth_limit_changes_reachability ... ok
 
 test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 

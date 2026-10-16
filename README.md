@@ -101,16 +101,22 @@ A pasta `docs/evidencias/` contém os logs completos da demonstração, dos test
 ## Exemplos de uso da API
 
 ```rust
-use conectastore::{Customer, Product, Store};
+use conectastore::{Customer, Product, Store, StoreError};
 
-let mut store = Store::new();
-store.add_customer(Customer::new(1, "Ana"))?;
-store.add_product(Product::new(10, "Notebook", "Eletronicos", 3500.0))?;
-store.add_product(Product::new(11, "Mouse", "Eletronicos", 120.0))?;
-store.register_purchase(1, 10, 1.0)?;
-store.connect_products(10, 11, 0.9)?;
-let itens = store.recommend_for_customer(1, 3, 5)?;
-# Ok::<(), conectastore::StoreError>(())
+fn main() -> Result<(), StoreError> {
+    let mut store = Store::new();
+    store.add_customer(Customer::new(1, "Ana"))?;
+    store.add_product(Product::new(10, "Notebook", "Eletronicos", 3500.0))?;
+    store.add_product(Product::new(11, "Mouse", "Eletronicos", 120.0))?;
+    store.register_purchase(1, 10, 1.0)?;
+    store.connect_products(10, 11, 0.9)?;
+
+    let itens = store.recommend_for_customer(1, 3, 5)?;
+    for item in itens {
+        println!("{}: score {:.3}", item.product.name, item.score);
+    }
+    Ok(())
+}
 ```
 
 ## Complexidade resumida
