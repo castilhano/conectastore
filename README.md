@@ -90,7 +90,13 @@ Os valores representam uma execução pontual neste ambiente e não constituem g
 
 ## Evidências de execução
 
-A pasta `docs/evidencias/` contém os logs completos e registros visuais gerados diretamente dessas saídas para a demonstração, os testes e o benchmark. As imagens não simulam aprovações: reproduzem os logs preservados ao lado delas.
+A pasta `docs/evidencias/` contém os logs completos da demonstração, dos testes e do benchmark. As imagens abaixo são visualizações produzidas a partir desses logs, não capturas diretas da tela do terminal.
+
+| Execução | Log completo | Visualização do log |
+|---|---|---|
+| Demonstração de cadastro, consulta e recomendações | [demo.log](docs/evidencias/demo.log) | [Ver imagem](docs/evidencias/execucao-demo.png) |
+| Testes unitários e de integração | [cargo-test.log](docs/evidencias/cargo-test.log) | [Ver imagem](docs/evidencias/execucao-testes.png) |
+| Benchmark em três volumes | [benchmark.log](docs/evidencias/benchmark.log) | [Ver imagem](docs/evidencias/execucao-benchmark.png) |
 
 ## Exemplos de uso da API
 
@@ -115,12 +121,9 @@ let itens = store.recommend_for_customer(1, 3, 5)?;
 - memória do grafo em lista de adjacência: `O(V + E)`;
 - ordenação de `R` candidatos: `O(R log R)`.
 
-## Links de entrega
+## Entrega
 
-- Repositório público: https://github.com/castilhano/conectastore
-- Vídeo pitch: a URL será informada separadamente pelo autor após a gravação e publicação.
-
-O relatório técnico em PDF é entregue separadamente. Antes da entrega final, confirme que o repositório e o vídeo estão acessíveis pelos links enviados ao professor.
+O relatório técnico em PDF é entregue separadamente deste repositório. O código, os testes e as evidências de execução permanecem disponíveis aqui para reprodução.
 
 ## Limitações e evolução
 
