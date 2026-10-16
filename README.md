@@ -50,7 +50,20 @@ cargo build --release
 cargo run --release -- demo
 ```
 
-No computador Windows usado nesta entrega, o toolchain MSVC padrão não encontra `link.exe`. O toolchain `stable-x86_64-pc-windows-gnullvm` já está instalado e foi validado. Para executar os comandos neste computador, acrescente `+stable-x86_64-pc-windows-gnullvm` logo após `cargo`, por exemplo: `cargo +stable-x86_64-pc-windows-gnullvm run --release -- demo`. O mesmo vale para `cargo test` e para o benchmark.
+No Windows com o toolchain MSVC, `link.exe` precisa estar disponível; com o Visual Studio C++ Build Tools configurado, os comandos acima funcionam normalmente. Na máquina usada nesta entrega, `link.exe` não está instalado. Como este projeto não usa bibliotecas C externas, uma cópia limpa foi compilada com o toolchain `stable-x86_64-pc-windows-gnullvm` e o `rust-lld` incluído nele. No PowerShell, dentro da pasta do projeto, execute:
+
+```powershell
+rustup toolchain install stable-x86_64-pc-windows-gnullvm
+rustup component add rust-mingw --toolchain stable-x86_64-pc-windows-gnullvm
+$conectastoreSysroot = rustc +stable-x86_64-pc-windows-gnullvm --print sysroot
+$env:CARGO_TARGET_X86_64_PC_WINDOWS_GNULLVM_LINKER = Join-Path $conectastoreSysroot 'lib\rustlib\x86_64-pc-windows-gnullvm\bin\rust-lld.exe'
+cargo +stable-x86_64-pc-windows-gnullvm build --release
+cargo +stable-x86_64-pc-windows-gnullvm run --release -- demo
+cargo +stable-x86_64-pc-windows-gnullvm test
+cargo +stable-x86_64-pc-windows-gnullvm run --release -- benchmark
+```
+
+A verificação foi feita a partir de uma cópia limpa do ZIP, com 12 testes aprovados e demonstração e benchmark executados. A variável de ambiente acima vale apenas para a sessão atual do PowerShell. Essa opção para programas Rust puros é descrita na [documentação oficial do target Windows gnullvm](https://doc.rust-lang.org/rustc/platform-support/windows-gnullvm.html).
 
 Ajuda dos comandos:
 
